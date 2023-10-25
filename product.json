@@ -19,7 +19,7 @@
       "sendToSubscriptions": true,
       "saveToRealtime": true,
       "cronExpressions": [
-        "0 0/5 * ? * MON-FRI *",
+        "0 0/2 * ? * MON-FRI *",
         "0 0/15 * ? * SAT,SUN *"
       ],
       "prepareScripts": [
@@ -39,40 +39,6 @@
           {
             "connectorName": "nlp",
             "stagingName": "product"
-          }
-        ]
-      }
-    },
-    {
-      "pipelineName": "purchaseorder_main",
-      "pipelineDescription": "Pipeline for the purchase table, that uses staging nlp_product",
-      "outputDataModelName": "mdmpurchaseorder",
-      "overlapDeltaMinutes": 30,
-      "saveToCds": true,
-      "saveToUnified": true,
-      "saveToRealtime": true,
-      "sendToSubscriptions": true,
-      "cronExpressions": [
-        "0 0/5 * ? * MON-FRI *",
-        "0 0/15 * ? * SAT,SUN *"
-      ],
-      "prepareScripts": [
-        "purchaseorder_prepare.sql"
-      ],
-      "processScript": "purchaseorder.sql",
-      "sourceEntities": {
-        "dataModels": [
-
-          {
-
-              "dataModelName": "mdmpurchaseorder"
-
-           }
-],
-        "stagings": [
-          {
-            "connectorName": "nlp",
-            "stagingName": "purchaseorder"
           }
         ]
       }
