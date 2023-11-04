@@ -19,8 +19,7 @@
       "sendToSubscriptions": true,
       "saveToRealtime": true,
       "cronExpressions": [
-        "0 0/2 * ? * MON-FRI *",
-        "0 0/15 * ? * SAT,SUN *"
+        "0 0/2 * ? * * *"
       ],
       "prepareScripts": [
         "product_prepare.sql"
