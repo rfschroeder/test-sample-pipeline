@@ -42,6 +42,40 @@
           }
         ]
       }
+    },
+    {
+      "pipelineName": "newfarhorizon_main",
+      "pipelineDescription": "Far Horizon Data Model, that uses staging nlp_product",
+      "outputDataModelName": "mdmfarhorizon",
+      "overlapDeltaMinutes": 30,
+      "saveToCds": true,
+      "saveToUnified": true,
+      "saveToRealtime": true,
+      "sendToSubscriptions": true,
+      "checkExistsDataToProcess": true,
+      "useBatchNotification": false,
+      "cronExpressions": [
+        "0 0/3 * ? * MON-FRI *",
+        "0 0/2 * ? * SAT,SUN *"
+      ],
+      "processScript": "purchprodnewsql.csql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+            "dataModelName": "mdmfarhorizon"
+          }
+        ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          },
+          {
+            "connectorName": "nlp",
+            "stagingName": "purchaseorder"
+          }
+        ]
+      }
     }
   ]
 }
