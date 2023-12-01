@@ -18,7 +18,7 @@
       "saveToRealtime": true,
       "sendToSubscriptions": true,
       "saveToRealtime": true,
-      "checkExistsDataToProcess": false,
+      "checkExistsDataToProcess": true,
       "cronExpressions": [
         "0 0/2 * ? * * *"
       ],
@@ -52,7 +52,7 @@
       "saveToUnified": true,
       "saveToRealtime": true,
       "sendToSubscriptions": true,
-      "checkExistsDataToProcess": false,
+      "checkExistsDataToProcess": true,
       "useBatchNotification": false,
       "cronExpressions": [
         "0 0/3 * ? * MON-FRI *",
