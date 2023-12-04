@@ -1,3 +1,4 @@
-
-create or replace temporary table lk_tenant (id int, tenantId string);
+BEGIN
+    create or replace temporary table lk_tenant (id int, tenantId string);
+END;
 	
