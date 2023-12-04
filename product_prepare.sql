@@ -1,2 +1,3 @@
-
-create or replace table lk_tenant (id int, tenantId string);
+BEGIN
+  create or replace table lk_tenant (id int, tenantId string);
+END;
