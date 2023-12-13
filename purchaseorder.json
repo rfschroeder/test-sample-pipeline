@@ -9,68 +9,32 @@
   },
   "pipelines": [
     {
-      "pipelineName": "product",
-      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
-      "outputDataModelName": "mdmproduct",
+      "pipelineName": "purchaseorder_main",
+      "pipelineDescription": "Pipeline for the purchase table, that uses staging nlp_product",
+      "outputDataModelName": "mdmpurchaseorder",
       "overlapDeltaMinutes": 30,
       "saveToCds": true,
       "saveToUnified": true,
       "saveToRealtime": true,
       "sendToSubscriptions": true,
-      "saveToRealtime": true,
-      "checkExistsDataToProcess": true,
-      "useBatchNotification": true,
       "cronExpressions": [
-        "0 0/3 * ? * * *"
+        "0 0/5 * ? * MON-FRI *",
+        "0 0/15 * ? * SAT,SUN *"
       ],
       "prepareScripts": [
-        "product_prepare.sql"
+        "purchaseorder_prepare.sql"
       ],
-      "processScript": "product.sql",
+      "processScript": "purchaseorder.sql",
       "sourceEntities": {
         "dataModels": [
 
           {
 
-              "dataModelName": "mdmproduct"
+              "dataModelName": "mdmpurchaseorder"
 
            }
 ],
         "stagings": [
-          {
-            "connectorName": "nlp",
-            "stagingName": "product"
-          }
-        ]
-      }
-    },
-    {
-      "pipelineName": "newfarhorizon_main",
-      "pipelineDescription": "Far Horizon Data Model, that uses staging nlp_product",
-      "outputDataModelName": "mdmfarhorizon",
-      "overlapDeltaMinutes": 30,
-      "saveToCds": true,
-      "saveToUnified": true,
-      "saveToRealtime": true,
-      "sendToSubscriptions": true,
-      "checkExistsDataToProcess": true,
-      "useBatchNotification": false,
-      "cronExpressions": [
-        "0 0/3 * ? * MON-FRI *",
-        "0 0/3 * ? * SAT,SUN *"
-      ],
-      "processScript": "purchprodnewsql.csql",
-      "sourceEntities": {
-        "dataModels": [
-          {
-            "dataModelName": "mdmfarhorizon"
-          }
-        ],
-        "stagings": [
-          {
-            "connectorName": "nlp",
-            "stagingName": "product"
-          },
           {
             "connectorName": "nlp",
             "stagingName": "purchaseorder"
