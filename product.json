@@ -17,6 +17,7 @@
       "saveToUnified": true,
       "saveToRealtime": true,
       "sendToSubscriptions": true,
+      "useBatchNotification": true,
       "saveToRealtime": true,
       "cronExpressions": [
         "0 0/3 * ? * * *"
@@ -50,6 +51,7 @@
       "saveToCds": true,
       "saveToUnified": true,
       "saveToRealtime": true,
+      "useBatchNotification": true,
       "sendToSubscriptions": true,
       "cronExpressions": [
         "0 0/3 * ? * MON-FRI *",
