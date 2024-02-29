@@ -1,0 +1,45 @@
+{
+  "defaults": {
+    "cronExpressions": [
+      "0 */5 0 ? * * *"
+    ],
+    "prepareScripts": [
+      "prepare.sql"
+    ]
+  },
+  "pipelines": [
+    {
+      "pipelineName": "product",
+      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
+      "outputDataModelName": "mdmproduct",
+      "overlapDeltaMinutes": 30,
+      "saveToCds": true,
+      "saveToUnified": true,
+      "saveToRealtime": true,
+      "sendToSubscriptions": true,
+      "useBatchNotification": true,
+      "checkExistsDataToProcess": false,
+      "saveToRealtime": true,
+      "cronExpressions": [
+        "0 0/3 * ? * * *"
+      ],
+      "prepareScripts": [
+        "product_prepare.sql"
+      ],
+      "processScript": "product.sql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+              "dataModelName": "mdmproduct"
+           }
+        ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          }
+        ]
+      }
+    }
+  ]
+}
