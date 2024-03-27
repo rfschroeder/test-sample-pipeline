@@ -1,0 +1,113 @@
+{
+  "defaults": {
+    "cronExpressions": [
+      "0 */1 0 ? * * *"
+    ],
+    "prepareScripts": [
+      "prepare.sql"
+    ]
+  },
+  "pipelines": [
+    {
+      "pipelineName": "product",
+      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
+      "outputDataModelName": "mdmproduct",
+      "overlapDeltaMinutes": 30,
+      "saveToCds": true,
+      "saveToUnified": true,
+      "saveToRealtime": true,
+      "sendToSubscriptions": true,
+      "useBatchNotification": false,
+      "checkExistsDataToProcess": false,
+      "saveToRealtime": true,
+      "cronExpressions": [
+        "0 */1 0 ? * * *"
+      ],
+      "prepareScripts": [
+        "product_prepare.sql"
+      ],
+      "processScript": "product.sql",
+      "sourceEntities": {
+        "dataModels": [
+
+          {
+
+              "dataModelName": "mdmproduct"
+
+           }
+],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          }
+        ]
+      }
+    },
+    {
+      "pipelineName": "purchaseproducts",
+      "pipelineDescription": "Pipeline to list purchase order table, that uses staging nlp_product",
+      "outputDataModelName": "mdmpurchaseproducts",
+      "overlapDeltaMinutes": 30,
+      "saveToCds": true,
+      "saveToUnified": true,
+      "saveToRealtime": true,
+      "sendToSubscriptions": true,
+      "useBatchNotification": true,
+      "saveToRealtime": true,
+      "cronExpressions": [
+        "0 */1 0 ? * * *"
+      ],
+      "processScript": "purchaseproducts.sql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+            "dataModelName": "mdmpurchaseproducts"
+           }
+        ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "purchaseorder"
+          },
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          }
+        ]
+      }
+    },
+    {
+      "pipelineName": "newfarhorizon_main",
+      "pipelineDescription": "Far Horizon Data Model, that uses staging nlp_product",
+      "outputDataModelName": "mdmfarhorizon",
+      "overlapDeltaMinutes": 30,
+      "saveToCds": true,
+      "saveToUnified": true,
+      "saveToRealtime": true,
+      "useBatchNotification": true,
+      "sendToSubscriptions": true,
+      "cronExpressions": [
+        "0 */1 0 ? * * *"
+      ],
+      "processScript": "purchprodnewsql.csql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+            "dataModelName": "mdmfarhorizon"
+          }
+        ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          },
+          {
+            "connectorName": "nlp",
+            "stagingName": "purchaseorder"
+          }
+        ]
+      }
+    }
+  ]
+}
