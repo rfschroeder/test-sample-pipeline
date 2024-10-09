@@ -17,7 +17,8 @@
       "saveToUnified": true,
       "saveToRealtime": true,
       "sendToSubscriptions": true,
-      "useBatchNotification": true,
+      "useBatchNotification": false,
+      "useBatchSQLEfficiency": true,
       "saveToRealtime": true,
       "cronExpressions": [
         "0 0/3 * ? * * *"
