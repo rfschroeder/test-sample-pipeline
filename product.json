@@ -18,7 +18,8 @@
       "saveToRealtime": true,
       "sendToSubscriptions": true,
       "useBatchNotification": false,
-      "useBatchSQLEfficiency": true,
+      "useBatchSQLEfficiency": false,
+      "useBatchObservability": true,
       "saveToRealtime": true,
       "cronExpressions": [
         "0 0/3 * ? * * *"
