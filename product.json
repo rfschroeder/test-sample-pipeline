@@ -20,6 +20,7 @@
       "useBatchNotification": false,
       "useBatchSQLEfficiency": false,
       "useBatchObservability": true,
+      "checkExistsDataToProcess": true,
       "saveToRealtime": true,
       "cronExpressions": [
         "0 0/3 * ? * * *"
