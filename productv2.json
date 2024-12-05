@@ -1,0 +1,62 @@
+{
+  "version": "V2",
+  "defaults": {
+    "cronExpressions": ["0 0 3 ? * MON-FRI *"],
+    "prepareScripts": ["prepare.sql"]
+  },
+  "pipelines": [
+    {
+      "pipelineName": "product",
+      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
+      "outputDataModelName": "mdmproduct",
+      "overlapDeltaMinutes": 3600,
+      "cronExpressions": ["0 0 3 ? * MON-FRI *"],
+      "timeZone": "America/Sao_Paulo",
+      "processScript": "product.sql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+            "dataModelName": "mdmproduct"
+          }
+        ],
+        "stagings": [
+          {
+            "connectorName": "clockinmobile",
+            "stagingName": "clockinrecords"
+          },
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          }
+        ]
+      },
+      "sendTo": {
+        "bigquery": {
+          "customer": true,
+          "unified": true
+        },
+        "subscriptions": {
+          "customer": false,
+          "unified": false
+        },
+        "realtime": false
+      },
+      "clear": {
+        "bigquery": {
+          "unified": false,
+          "customer": false
+        },
+        "subscriptions": {
+          "unified": false,
+          "customer": false
+        },
+        "realtime": false
+      },
+      "fanOut": true,
+      "useBatchObservability": false,
+      "useBatchSQLEfficiency": false,
+      "checkExistsDataToProcess": true,
+      "additionalParameters": {}
+    }
+  ]
+}
