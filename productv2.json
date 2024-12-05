@@ -10,7 +10,7 @@
       "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
       "outputDataModelName": "mdmproduct",
       "overlapDeltaMinutes": 3600,
-      "cronExpressions": ["0 0 3 ? * MON-FRI *"],
+      "cronExpressions": ["0 0/3 * ? * * *"],
       "timeZone": "America/Sao_Paulo",
       "processScript": "product.sql",
       "sourceEntities": {
