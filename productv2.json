@@ -21,10 +21,6 @@
         ],
         "stagings": [
           {
-            "connectorName": "clockinmobile",
-            "stagingName": "clockinrecords"
-          },
-          {
             "connectorName": "nlp",
             "stagingName": "product"
           }
