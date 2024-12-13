@@ -51,7 +51,8 @@
       "fanOut": true,
       "useBatchObservability": false,
       "useBatchSQLEfficiency": false,
-      "checkExistsDataToProcess": true,
+      "useBatchNotification": true,
+      "checkExistsDataToProcess": false,
       "additionalParameters": {}
     }
   ]
