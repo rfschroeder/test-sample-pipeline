@@ -55,9 +55,7 @@
       "sendToSubscriptions": true,
       "useBatchNotification": true,
       "saveToRealtime": true,
-      "cronExpressions": [
-        "0 0/3 * ? * * *"
-      ],
+      "runAfterPipelines": ["product"],
       "processScript": "purchaseproducts.sql",
       "sourceEntities": {
         "dataModels": [
@@ -78,7 +76,7 @@
       }
     },
     {
-      "pipelineName": "newfarhorizon_main",
+      "pipelineName": "farhorizon",
       "pipelineDescription": "Far Horizon Data Model, that uses staging nlp_product",
       "outputDataModelName": "mdmfarhorizon",
       "overlapDeltaMinutes": 30,
@@ -87,10 +85,7 @@
       "saveToRealtime": true,
       "useBatchNotification": true,
       "sendToSubscriptions": true,
-      "cronExpressions": [
-        "0 0/3 * ? * MON-FRI *",
-        "0 0/3 * ? * SAT,SUN *"
-      ],
+      "runAfterPipelines": ["purchaseproducts"],
       "processScript": "purchprodnewsql.csql",
       "sourceEntities": {
         "dataModels": [
