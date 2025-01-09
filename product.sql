@@ -1,9 +1,8 @@
 SELECT 
-    stg.id as mdmbarcode,
-    stg.productname as mdmname,
-    stg.category as mdmdescription,
-    stg.productprice as mdmunitvalue,
-    CONTAINS_SUBSTR(stg.productname, 'banan') AS mdmDeleted
+    stg.bar_code,
+    stg.productname,
+    stg.category,
+    stg.productprice
     --metadata-v2--
 from stg_nlp_product as stg
 where 1=1
