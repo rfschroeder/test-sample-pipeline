@@ -6,78 +6,6 @@
   },
   "pipelines": [
     {
-      "pipelineName": "product_standalone",
-      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
-      "outputDataModelName": "mdmproduct",
-      "overlapDeltaMinutes": 30,
-      "saveToCds": true,
-      "saveToUnified": true,
-      "saveToRealtime": true,
-      "sendToSubscriptions": true,
-      "useBatchNotification": false,
-      "checkExistsDataToProcess": false,
-      "saveToRealtime": true,
-      "cronExpressions": [
-        "0 0/3 * ? * * *"
-      ],
-      "prepareScripts": [
-        "product_prepare.sql"
-      ],
-      "processScript": "product.sql",
-      "sourceEntities": {
-        "dataModels": [
-
-          {
-
-              "dataModelName": "mdmproduct"
-
-           }
-      ],
-        "stagings": [
-          {
-            "connectorName": "nlp",
-            "stagingName": "product"
-          }
-        ]
-      }
-    },
-    {
-      "pipelineName": "product_b",
-      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
-      "outputDataModelName": "mdmproduct",
-      "overlapDeltaMinutes": 30,
-      "saveToCds": true,
-      "saveToUnified": true,
-      "saveToRealtime": true,
-      "sendToSubscriptions": true,
-      "useBatchNotification": false,
-      "checkExistsDataToProcess": false,
-      "saveToRealtime": true,
-      "cronExpressions": [
-        "0 0/2 * ? * * *"
-      ],
-      "prepareScripts": [
-        "product_prepare.sql"
-      ],
-      "processScript": "product.sql",
-      "sourceEntities": {
-        "dataModels": [
-
-          {
-
-              "dataModelName": "mdmproduct"
-
-           }
-      ],
-        "stagings": [
-          {
-            "connectorName": "nlp",
-            "stagingName": "product"
-          }
-        ]
-      }
-    },
-    {
       "pipelineName": "product",
       "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
       "outputDataModelName": "mdmproduct",
@@ -89,6 +17,7 @@
       "useBatchNotification": false,
       "checkExistsDataToProcess": false,
       "saveToRealtime": true,
+      "nextPipelines": ["purchaseproducts"]
       "cronExpressions": [
         "0 0/3 * ? * * *"
       ],
@@ -124,7 +53,7 @@
       "sendToSubscriptions": true,
       "useBatchNotification": false,
       "saveToRealtime": true,
-      "runAfterPipelines": ["product", "product_b"],
+      "nextPipelines": ["farhorizon"],
       "processScript": "purchaseproducts.sql",
       "sourceEntities": {
         "dataModels": [
@@ -154,7 +83,6 @@
       "saveToRealtime": true,
       "useBatchNotification": false,
       "sendToSubscriptions": true,
-      "runAfterPipelines": ["purchaseproducts"],
       "processScript": "purchprodnewsql.csql",
       "sourceEntities": {
         "dataModels": [
