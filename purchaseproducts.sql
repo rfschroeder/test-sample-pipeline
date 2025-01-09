@@ -1,9 +1,6 @@
 select
-    stg.orderid as mdmorderid,
-    stg.customerid as mdmcustomerid,
-    stg.customername as mdmcustomername,
-    product.bar_code as mdmbarcode,
-    stg_p.productname as mdmproductname
+    stg.*,
+    stg_p.*
     --metadata-v2--
 from
     stg_nlp_purchaseorder stg
