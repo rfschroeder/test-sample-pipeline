@@ -17,7 +17,7 @@
       "useBatchNotification": false,
       "checkExistsDataToProcess": false,
       "saveToRealtime": true,
-      "nextPipelines": ["purchaseproducts"]
+      "nextPipelines": ["purchaseproducts"],
       "cronExpressions": [
         "0 0/3 * ? * * *"
       ],
