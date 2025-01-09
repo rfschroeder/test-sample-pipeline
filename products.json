@@ -124,7 +124,7 @@
       "sendToSubscriptions": true,
       "useBatchNotification": false,
       "saveToRealtime": true,
-      "runAfterPipelines": ["product"],
+      "runAfterPipelines": ["product", "product_b"],
       "processScript": "purchaseproducts.sql",
       "sourceEntities": {
         "dataModels": [
