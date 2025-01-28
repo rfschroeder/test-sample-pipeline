@@ -1,0 +1,61 @@
+{
+  "defaults": {
+    "prepareScripts": [
+      "prepare.sql"
+    ]
+  },
+  "pipelines": [
+    {
+      "pipelineName": "product",
+      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
+      "outputDataModelName": "mdmproduct",
+      "overlapDeltaMinutes": 30,
+      "useBatchNotification": false,
+      "checkExistsDataToProcess": false,
+      "sendTo": {
+        "bigquery": {
+          "customer": true,
+          "unified": true
+        },
+        "subscriptions": {
+          "customer": false,
+          "unified": false
+        },
+        "realtime": false
+      },
+      "clear": {
+        "bigquery": {
+          "unified": false,
+          "customer": false
+        },
+        "subscriptions": {
+          "unified": false,
+          "customer": false
+        },
+        "cds": false,
+        "realtime": false
+      },
+      "nextPipelines": ["purchaseproducts"],
+      "cronExpressions": [
+        "0 0/3 * ? * * *"
+      ],
+      "prepareScripts": [
+        "product_prepare.sql"
+      ],
+      "processScript": "product.sql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+              "dataModelName": "mdmproduct"
+          }
+      ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          }
+        ]
+      }
+    }
+  ]
+}
