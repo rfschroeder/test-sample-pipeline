@@ -1,4 +1,5 @@
 {
+  "version": "V2",
   "defaults": {
     "prepareScripts": [
       "prepare.sql"
