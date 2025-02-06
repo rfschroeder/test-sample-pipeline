@@ -35,7 +35,6 @@
         "cds": false,
         "realtime": false
       },
-      "nextPipelines": ["purchaseproducts"],
       "cronExpressions": [
         "0 0/3 * ? * * *"
       ],
