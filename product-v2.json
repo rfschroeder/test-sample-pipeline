@@ -14,8 +14,8 @@
       "checkExistsDataToProcess": false,
       "sendTo": {
         "bigquery": {
-          "customer": true,
-          "unified": true
+          "customer": false,
+          "unified": false
         },
         "subscriptions": {
           "customer": false,
