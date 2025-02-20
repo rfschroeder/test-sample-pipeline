@@ -11,7 +11,7 @@
       "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
       "outputDataModelName": "mdmproduct",
       "overlapDeltaMinutes": 30,
-      "useBatchNotification": false,
+      "useBatchNotification": true,
       "checkExistsDataToProcess": false,
       "sendTo": {
         "bigquery": {
@@ -62,7 +62,7 @@
       "pipelineDescription": "Pipeline to list purchase order table, that uses staging nlp_product",
       "outputDataModelName": "mdmpurchaseproducts",
       "overlapDeltaMinutes": 30,
-      "useBatchNotification": false,
+      "useBatchNotification": true,
       "sendTo": {
         "bigquery": {
           "customer": true,
@@ -110,7 +110,7 @@
       "pipelineDescription": "Far Horizon Data Model, that uses staging nlp_product",
       "outputDataModelName": "mdmfarhorizon",
       "overlapDeltaMinutes": 30,
-      "useBatchNotification": false,
+      "useBatchNotification": true,
       "sendTo": {
         "bigquery": {
           "customer": true,
