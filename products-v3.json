@@ -86,7 +86,7 @@
         "realtime": false
       },
       "nextPipelines": ["farhorizon2"],
-      "processScript": "purchaseproducts.sql",
+      "processScript": "purchaseproducts2.sql",
       "sourceEntities": {
         "dataModels": [
           {
