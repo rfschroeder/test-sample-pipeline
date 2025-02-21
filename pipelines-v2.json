@@ -1,0 +1,187 @@
+{
+  "version": "V2",
+  "defaults": {
+    "prepareScripts": [
+      "prepare.sql"
+    ]
+  },
+  "pipelines": [
+    {
+      "pipelineName": "product2",
+      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
+      "outputDataModelName": "mdmproduct",
+      "overlapDeltaMinutes": 30,
+      "useBatchNotification": true,
+      "checkExistsDataToProcess": false,
+      "sendTo": {
+        "bigquery": {
+          "customer": true,
+          "unified": true
+        },
+        "subscriptions": {
+          "customer": false,
+          "unified": false
+        },
+        "realtime": false
+      },
+      "clear": {
+        "bigquery": {
+          "unified": false,
+          "customer": false
+        },
+        "subscriptions": {
+          "unified": false,
+          "customer": false
+        },
+        "realtime": false
+      },
+      "nextPipelines": ["purchaseproducts2"],
+      "cronExpressions": [
+        "0 0/3 * ? * * *"
+      ],
+      "prepareScripts": [
+        "product_prepare.sql"
+      ],
+      "processScript": "product.sql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+              "dataModelName": "mdmproduct"
+          }
+      ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          }
+        ]
+      }
+    },
+    {
+      "pipelineName": "purchaseproducts2",
+      "pipelineDescription": "Pipeline to list purchase order table, that uses staging nlp_product",
+      "outputDataModelName": "mdmpurchaseproducts",
+      "overlapDeltaMinutes": 30,
+      "useBatchNotification": true,
+      "sendTo": {
+        "bigquery": {
+          "customer": true,
+          "unified": true
+        },
+        "subscriptions": {
+          "customer": false,
+          "unified": false
+        },
+        "realtime": false
+      },
+      "clear": {
+        "bigquery": {
+          "unified": false,
+          "customer": false
+        },
+        "subscriptions": {
+          "unified": false,
+          "customer": false
+        },
+        "realtime": false
+      },
+      "nextPipelines": ["farhorizon2"],
+      "processScript": "purchaseproducts2.sql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+            "dataModelName": "mdmpurchaseproducts"
+           }
+        ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "purchaseorder"
+          },
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          }
+        ]
+      }
+    },
+    {
+      "pipelineName": "purchaseorder_main",
+      "pipelineDescription": "Pipeline for the purchase table, that uses staging nlp_product",
+      "outputDataModelName": "mdmpurchaseorder",
+      "overlapDeltaMinutes": 30,
+      "saveToCds": true,
+      "saveToUnified": true,
+      "saveToRealtime": true,
+      "sendToSubscriptions": true,
+      "useBatchNotification": true,
+      "cronExpressions": [
+        "0 0/3 * ? * MON-FRI *"
+      ],
+      "prepareScripts": [
+        "purchaseorder_prepare.sql"
+      ],
+      "processScript": "purchaseorder.sql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+              "dataModelName": "mdmpurchaseorder"
+           }
+        ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "purchaseorder"
+          }
+        ]
+      }
+    },
+    {
+      "pipelineName": "farhorizon2",
+      "pipelineDescription": "Far Horizon Data Model, that uses staging nlp_product",
+      "outputDataModelName": "mdmfarhorizon",
+      "overlapDeltaMinutes": 30,
+      "useBatchNotification": true,
+      "sendTo": {
+        "bigquery": {
+          "customer": true,
+          "unified": true
+        },
+        "subscriptions": {
+          "customer": false,
+          "unified": false
+        },
+        "realtime": false
+      },
+      "clear": {
+        "bigquery": {
+          "unified": false,
+          "customer": false
+        },
+        "subscriptions": {
+          "unified": false,
+          "customer": false
+        },
+        "realtime": false
+      },
+      "processScript": "purchprodnewsql.csql",
+      "sourceEntities": {
+        "dataModels": [
+          {
+            "dataModelName": "mdmfarhorizon"
+          }
+        ],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          },
+          {
+            "connectorName": "nlp",
+            "stagingName": "purchaseorder"
+          }
+        ]
+      }
+    }
+  ]
+}
