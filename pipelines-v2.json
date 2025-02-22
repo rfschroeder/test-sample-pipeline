@@ -116,7 +116,7 @@
       "sendToSubscriptions": true,
       "useBatchNotification": true,
       "cronExpressions": [
-        "0 0/3 * ? * MON-FRI *"
+        "0 0/3 * ? * * *"
       ],
       "prepareScripts": [
         "purchaseorder_prepare.sql"
