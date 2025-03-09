@@ -8,7 +8,7 @@
   "pipelines": [
     {
       "pipelineName": "product2",
-      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
+      "pipelineDescription": "Pipeline for the product table that uses staging nlp_product",
       "outputDataModelName": "mdmproduct",
       "overlapDeltaMinutes": 30,
       "useBatchNotification": true,
