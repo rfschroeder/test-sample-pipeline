@@ -53,7 +53,8 @@
       "saveToUnified": true,
       "saveToRealtime": true,
       "sendToSubscriptions": true,
-      "useBatchNotification": true,
+      "useBatchNotification": false,
+      "checkExistsDataToProcess": true,
       "saveToRealtime": true,
       "cronExpressions": [
         "0 0/3 * ? * * *"
