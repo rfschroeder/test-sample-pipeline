@@ -45,6 +45,42 @@
       }
     },
     {
+      "pipelineName": "product_2",
+      "pipelineDescription": "Pipeline for the product table, that uses staging nlp_product",
+      "outputDataModelName": "mdmproduct",
+      "overlapDeltaMinutes": 30,
+      "saveToCds": true,
+      "saveToUnified": true,
+      "saveToRealtime": true,
+      "sendToSubscriptions": true,
+      "useBatchNotification": false,
+      "checkExistsDataToProcess": false,
+      "saveToRealtime": true,
+      "cronExpressions": [
+        "0 0/3 * ? * * *"
+      ],
+      "prepareScripts": [
+        "product_prepare.sql"
+      ],
+      "processScript": "product.sql",
+      "sourceEntities": {
+        "dataModels": [
+
+          {
+
+              "dataModelName": "mdmproduct"
+
+           }
+],
+        "stagings": [
+          {
+            "connectorName": "nlp",
+            "stagingName": "product"
+          }
+        ]
+      }
+    },
+    {
       "pipelineName": "purchaseproducts",
       "pipelineDescription": "Pipeline to list purchase order table, that uses staging nlp_product",
       "outputDataModelName": "mdmpurchaseproducts",
