@@ -21,7 +21,7 @@
       "checkExistsDataToProcess": false,
       "saveToRealtime": true,
       "cronExpressions": [
-        "0 0/3 * ? * * *"
+        "0 0/3 * ? * * 2030"
       ],
       "prepareScripts": [
         "product_prepare.sql"
@@ -57,7 +57,7 @@
       "checkExistsDataToProcess": false,
       "saveToRealtime": true,
       "cronExpressions": [
-        "0 0/3 * ? * * *"
+        "0 0/3 * ? * * 2030"
       ],
       "prepareScripts": [
         "product_prepare.sql"
@@ -93,7 +93,7 @@
       "checkExistsDataToProcess": true,
       "saveToRealtime": true,
       "cronExpressions": [
-        "0 0/3 * ? * * *"
+        "0 0/3 * ? * * 2030"
       ],
       "processScript": "purchaseproducts.sql",
       "sourceEntities": {
@@ -125,7 +125,7 @@
       "useBatchNotification": true,
       "sendToSubscriptions": true,
       "cronExpressions": [
-        "0 0/3 * ? * * *"
+        "0 0/3 * ? * * 2030"
       ],
       "processScript": "purchprodnewsql.csql",
       "sourceEntities": {
